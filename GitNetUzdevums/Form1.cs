@@ -77,5 +77,45 @@ namespace WindowsFormsApplication_15
                 x += step;
             }
         }
+
+        private void button3_Click(object sender, EventArgs e) // Pievienojiet šo funkciju
+        {
+            double m = 30; // mērogs
+            int xc = pictureBox1.Width / 2;   // centra koordinātes
+            int yc = pictureBox1.Height / 2;
+            int xe, ye;     // punktu "ekrāna" koordinātes
+            double x, y;   // punktu "matemātiskās" koordinātes
+            double step = 0.005;    // solis
+            Graphics G = pictureBox1.CreateGraphics();
+            G.Clear(System.Drawing.Color.White);
+            Pen myPen = new Pen(Color.Silver);
+            G.DrawLine(myPen, 10, yc, 2 * xc - 10, yc);   // asis
+            G.DrawLine(myPen, xc, 10, xc, 2 * yc - 10);
+            myPen = new Pen(Color.Black);
+            x = -Math.PI;
+            // funkcijas grafika konstruēšanas cikls
+            while (x < Math.PI)
+            {
+                try   // ja funkcija kādā punktā neeksistē 
+                {
+                    y = Math.Cos(x);   // Funkcijas formula!!!
+                    xe = (int)(xc + m * x);
+                    ye = (int)(yc - m * y);
+                    G.DrawEllipse(myPen, xe, ye, 1, 1);
+                }
+                catch { }
+                x += step;
+            }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+        
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+     
+        }
     }
 }
